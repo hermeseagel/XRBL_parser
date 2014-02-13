@@ -2,6 +2,7 @@ import io,re,collections,pymongo,datetime
 import lxml.etree as etree
 #fs='/Users/Hermes/Downloads/tifrs-fr0-m1-ci-cr-2330-2013Q3.xml'
 fs='/Users/Hermes/Downloads/CN_SZ_000001_GB0710_20131023.xml'
+root=etree.parse(fs).getroot()
 def match(source,pattern):
 	matchobj=re.compile(pattern)
 	result=matchobj.findall(source)
