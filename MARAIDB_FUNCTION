@@ -1,0 +1,51 @@
+CREATE TABLE `finacneratio_asia`.`region` (
+  `idnew_table` INT NOT NULL,
+  `countryname` VARCHAR(45) NOT NULL,
+  `regionid` INT NOT NULL,
+  `stockmarketname` VARCHAR(45) NULL,
+  `regionname` VARCHAR(45) NULL,
+  PRIMARY KEY (`idnew_table`, `regionid`, `countryname`),
+  UNIQUE INDEX `countryname_UNIQUE` (`countryname` ASC),
+  UNIQUE INDEX `regionid_UNIQUE` (`regionid` ASC),
+  UNIQUE INDEX `stockmarketname_UNIQUE` (`stockmarketname` ASC),
+  UNIQUE INDEX `regionname_UNIQUE` (`regionname` ASC));
+
+
+CREATE TABLE `finacneratio_asia`.`asia_taiwan_2013` (
+  `ROE` VARCHAR(45) NULL,
+  `Quarter` VARCHAR(45) NOT NULL,
+  `companyname` VARCHAR(45) NOT NULL,
+  `regionid` INT NOT NULL,
+  `finrate1` VARCHAR(45) NULL,
+  `finrate2` VARCHAR(45) NULL,
+  PRIMARY KEY (`Quarter`, `companyname`, `regionid`),
+  UNIQUE INDEX `Quarter_UNIQUE` (`Quarter` ASC),
+  UNIQUE INDEX `companyname_UNIQUE` (`companyname` ASC),
+  UNIQUE INDEX `regionid_UNIQUE` (`regionid` ASC),
+  CONSTRAINT `regionid`
+    FOREIGN KEY (`regionid`)
+    REFERENCES `finacneratio_asia`.`region` (`regionid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `companyname`
+    FOREIGN KEY (`companyname`)
+    REFERENCES `finacneratio_asia`.`region` (`countryname`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+#create procedure create_new_table(var1)
+
+BEGIN
+DECLARE currentdate DATE;
+DECLARE datestr VARCHAR(10);
+declare thisyear int(10);
+select CURDATE() into currentdate;
+select date_format(currentdate, '%m%d') into datestr;
+select date_format(currentdate, '%Y') into thisyear;
+if datestr='0808' then 
+	set thisyear = thisyear+1;
+else 
+   set thisyear = thisyear;
+end if;
+
+RETURN thisyear;
+END
