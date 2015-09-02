@@ -125,8 +125,11 @@ def header_function(header_line):
 filename='2014-04-sii-24-C.zip'
 static_url="http://mops.twse.com.tw/server-java/FileDownLoad"
 #post_data='firstin=true&step=9&fileName='+filename+'&filePath=%2Fhome%2Fhtml%2Fnas%2Fifrs%2F2014%2F'
-#post_data='firstin=true&step=9&fileName=2014-02-sii-6-A.zip&filePath=%2Fhome%2Fhtml%2Fnas%2Fifrs%2F2014%2F'
-post_data='firstin=true&step=9&fileName=2014-03-sii-02-C.zip&filePath=%2Fhome%2Fhtml%2Fnas%2Fifrs%2F2014%2F'
+post_data='firstin=true&step=9&fileName=2014-02-sii-06-C.zip&filePath=%2Fhome%2Fhtml%2Fnas%2Fifrs%2F2014%2F'
+#post_data='firstin=true&step=9&fileName=2014-03-sii-02-C.zip&filePath=%2Fhome%2Fhtml%2Fnas%2Fifrs%2F2014%2F'
+#post_data='firstin=true&step=9&fileName=2014-02-pub-20-A.zip&filePath=%2Fhome%2Fhtml%2Fnas%2Fifrs%2F2014%2F'
+#post_data='firstin=true&step=9&fileName=2014-02-pub-23-A.zip&filePath=%2Fhome%2Fhtml%2Fnas%2Fifrs%2F2014%2F'
+#post_data="firstin=true&step=9&fileName=2014-02-rotc-17-B.zip&filePath=%2Fhome%2Fhtml%2Fnas%2Fifrs%2F2014%2F"
 connection=pycurl.Curl()
 connection.setopt(connection.URL,static_url)
 pathfile='/Users/Hermes/Python_script/'+filename
@@ -156,6 +159,5 @@ if  'content-type' in headers:
 	match=re.search('application/x-zip-compressed',content_type) 
 	if match:
 		print(headers['content-disposition'])
-		with open('/Users/Hermes/twxbrl/2014-03-sii-test.zip',"wb") as file:
+		with open('/Users/Hermes/twxbrl/2014-02-pub-98-C.zip',"wb") as file:
 			file.write(buffer.getvalue())
-			
