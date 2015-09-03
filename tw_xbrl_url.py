@@ -103,7 +103,7 @@ def get_xbrl_zipfile(postbody):
 	connection.setopt(connection.WRITEDATA,buffer)
 	connection.perform()
 	connection.close()
-	logfile=logging.basicConfig(filename='xrbl-error.log')
+	logging.basicConfig(filename='xrbl-error.log',level=logging.warning)
 	if  'content-type' in headers:
 		content_type = headers['content-type'].lower()
 		match=re.search('application/x-zip-compressed',content_type) 
@@ -133,12 +133,12 @@ if __name__ == '__main__':
 	#	proc1.start()
 	#how to use this script by http  or  command line 
 	#1.http must to do a interface to recvice 
-	config=configparser.ConfigParser()
-	config.read('xbrl.conf')
-	savepath=config['twxbrl']['savepath']
+	#config=configparser.ConfigParser()
+	#config.read('xbrl.conf')
+	#savepath=config['twxbrl']['savepath']
 	#print(savepath)
-	#year_q=sys.argv[1]
-	year_q='2014-03'
+	year_q=sys.argv[1]
+	#year_q='2014-03'
 	match=re.match("^\d\d\d\d(\-)\d\d$",year_q)
 	if match:
 		Taiwan_company_postdata_gen(year_q)
